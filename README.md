@@ -1,3 +1,9 @@
+[![Build Status](https://travis-ci.com/bnsd55/RetryCatch.svg?branch=master)](https://travis-ci.com/bnsd55/RetryCatch)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.bnsd55/RetryCatch/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.bnsd55/RetryCatch)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Open Source Love svg2](https://badges.frapsoft.com/os/v2/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity)
+
 # RetryCatch
 A retry catch mechanism that provides a synchronous and asynchronous running, using Java 8.
 
