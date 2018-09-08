@@ -16,9 +16,11 @@ Add the latest RetryCatch [Maven](https://search.maven.org/artifact/com.github.b
 # Usage example
 For more examples about synchronous and asynchronous retry-catch click [Here](/src/main/java/com/github/bnsd55/main/Main.java).
 
-Instead of runnable you can execute your own anonymous function as executes in the first example [Here](https://github.com/bnsd55/RetryCatch/blob/master/src/main/java/com/github/bnsd55/main/Main.java).
+Instead of runnable you can execute your own anonymous function as executed in the first example [Here](https://github.com/bnsd55/RetryCatch/blob/master/src/main/java/com/github/bnsd55/main/Main.java).
 
-You should not pass any parameter to your anonymous function, if you want to use parameters, use Callable instead of Runnable or Anonymous functions.
+You should not pass any parameters to your anonymous function, if you want to pass parameters, use Callable instead of Runnable or Anonymous functions.
+
+You can use anonymous functions both of synchronous and asynchronous executions.
 
 ## Synchronous
 
