@@ -1,4 +1,4 @@
-package retryCatch.interfaces;
+package com.github.bnsd55.retryCatch.interfaces;
 
 import java.util.concurrent.Callable;
 

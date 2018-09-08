@@ -1,4 +1,4 @@
-package main;
+package com.github.bnsd55.main;
 
 import java.util.ArrayList;
 import java.util.Random;

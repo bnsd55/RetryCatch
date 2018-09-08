@@ -1,6 +1,6 @@
-package main;
+package com.github.bnsd55.main;
 
-import retryCatch.RetryCatch;
+import com.github.bnsd55.retryCatch.RetryCatch;
 
 import java.nio.file.FileAlreadyExistsException;
 import java.util.Random;

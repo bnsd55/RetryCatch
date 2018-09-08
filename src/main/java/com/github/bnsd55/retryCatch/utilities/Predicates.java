@@ -1,4 +1,4 @@
-package retryCatch.utilities;
+package com.github.bnsd55.retryCatch.utilities;
 
 import java.util.Arrays;
 import java.util.function.Predicate;

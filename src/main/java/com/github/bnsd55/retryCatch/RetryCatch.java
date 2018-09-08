@@ -1,8 +1,8 @@
-package retryCatch;
+package com.github.bnsd55.retryCatch;
 
-import retryCatch.interfaces.ExecutorServiceProvider;
-import retryCatch.interfaces.ScheduledExecutorServiceProvider;
-import retryCatch.utilities.Predicates;
+import com.github.bnsd55.retryCatch.interfaces.ExecutorServiceProvider;
+import com.github.bnsd55.retryCatch.interfaces.ScheduledExecutorServiceProvider;
+import com.github.bnsd55.retryCatch.utilities.Predicates;
 
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
