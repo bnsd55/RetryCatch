@@ -20,7 +20,7 @@ public class Main {
          * Will retry to run ExampleRunnable 3 times, each time one of ArithmeticException,
          * FileAlreadyExistsException or IndexOutOfBoundsException are threw.
          * If the runnable threw an exception that does not exists in the retryOn list it will not retry the task.
-         * Because there is not return value from Runnable, the success call back does not have a returned parameter.
+         * Because there is not return value from Runnable, the success callback does not have a returned parameter.
          * We also can change the retryOn exception to Exception.class in order to retry on every threw exception.
          */
         RetryCatch retryCatchSyncRunnable = new RetryCatch();
@@ -138,7 +138,7 @@ public class Main {
                 Executors.newScheduledThreadPool(5);
 
         /**
-         * Schedule is acting like the regular schedule method from the ScheduleExecutorService
+         * Schedule is acting like the regular schedule method from the ScheduledExecutorService
          * we already know.
          * Schedule working with callable and runnable, this example is with runnable,
          * to use callable, read the comment above the schedule method.
@@ -160,7 +160,7 @@ public class Main {
         /**
          * As mentioned earlier, scheduleAtFixedRate working only with runnable.
          * This scheduleAtFixedRate is acting like the regular scheduleAtFixedRate
-         * method from the ScheduleExecutorService we already know and gets the same parameters.
+         * method from the ScheduledExecutorService we already know and gets the same parameters.
          */
         RetryCatch retryCatchAsyncScheduleAtFixedRate = new RetryCatch();
         retryCatchAsyncScheduleAtFixedRate
@@ -177,7 +177,7 @@ public class Main {
         /**
          * As mentioned earlier, scheduleWithFixedDelay working only with runnable.
          * This scheduleAtFixedRate is acting like the regular scheduleWithFixedDelay
-         * method from the ScheduleExecutorService we already know and gets the same parameters.
+         * method from the ScheduledExecutorService we already know and gets the same parameters.
          */
         RetryCatch retryCatchAsyncScheduleWithFixedDelay = new RetryCatch();
         retryCatchAsyncScheduleWithFixedDelay
@@ -189,7 +189,8 @@ public class Main {
                 .onRetry((retryCount, e) -> System.out.println("Retry count: " + retryCount + ", Exception message: " + e.getMessage()))
                 .onFailure(e -> System.out.println("Failure: Exception message: " + e.getMessage()))
                 .withExecutor(scheduledExecutorService)
-                .scheduleWithFixedDelay(new ExampleRunnable(), 5, 5, TimeUnit.SECONDS); // Do not forget, scheduleWithFixedDelay does not working with callable.
+                // Do not forget, scheduleWithFixedDelay does not working with callable.
+                .scheduleWithFixedDelay(new ExampleRunnable(), 5, 5, TimeUnit.SECONDS);
 
         // Shutdown all the executors we've created
         singleThread.shutdown();
