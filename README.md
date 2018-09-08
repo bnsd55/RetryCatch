@@ -18,7 +18,7 @@ For more examples about synchronous and asynchronous retry-catch click [Here](/s
 
 Instead of runnable you can execute your own anonymous function as executed in the first example [Here](https://github.com/bnsd55/RetryCatch/blob/master/src/main/java/com/github/bnsd55/main/Main.java).
 
-You should not pass any parameters to your anonymous function, if you want to pass parameters, use Callable instead of Runnable or Anonymous functions.
+You should not return values from your anonymous function, if you want to return value, use Callable.
 
 You can use anonymous functions both of synchronous and asynchronous executions.
 
