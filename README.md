@@ -14,9 +14,27 @@ Add the latest RetryCatch [Maven](https://search.maven.org/artifact/com.github.b
 
 
 # Usage example
-For more examples about synchronous and asynchronous retry-catch click [Here](/src/main/java/com/github/bnsd55/main/Main.java)
+For more examples about synchronous and asynchronous retry-catch click [Here](/src/main/java/com/github/bnsd55/main/Main.java).
+
+Instead of runnable you can execute your own anonymous function as executes in the first example [Here](https://github.com/bnsd55/RetryCatch/blob/master/src/main/java/com/github/bnsd55/main/Main.java).
+
+You should not pass any parameter to your anonymous function, if you want to use parameters, use Callable instead of Runnable or Anonymous functions.
 
 ## Synchronous
+
+### Runnable example
+```
+RetryCatch retryCatchSyncRunnable = new RetryCatch();
+        retryCatchSyncRunnable
+                // For infinite retry times, just remove this row
+                .retryCount(3)
+                // For retrying on all exceptions, just remove this row
+                .retryOn(ArithmeticException.class, IndexOutOfBoundsException.class)
+                .onSuccess(() -> System.out.println("Success, There is no result because this is a runnable."))
+                .onRetry((retryCount, e) -> System.out.println("Retry count: " + retryCount + ", Exception message: " + e.getMessage()))
+                .onFailure(e -> System.out.println("Failure: Exception message: " + e.getMessage()))
+                .run(new ExampleRunnable());
+```
 
 ### Callable example
 ```
@@ -46,19 +64,6 @@ For more examples about synchronous and asynchronous retry-catch click [Here](/s
                         return b / a;
                     }
                 });
-```
-### Runnable example
-```
-RetryCatch retryCatchSyncRunnable = new RetryCatch();
-        retryCatchSyncRunnable
-                // For infinite retry times, just remove this row
-                .retryCount(3)
-                // For retrying on all exceptions, just remove this row
-                .retryOn(ArithmeticException.class, IndexOutOfBoundsException.class)
-                .onSuccess(() -> System.out.println("Success, There is no result because this is a runnable."))
-                .onRetry((retryCount, e) -> System.out.println("Retry count: " + retryCount + ", Exception message: " + e.getMessage()))
-                .onFailure(e -> System.out.println("Failure: Exception message: " + e.getMessage()))
-                .run(new ExampleRunnable());
 ```
 
 ## Asynchronous

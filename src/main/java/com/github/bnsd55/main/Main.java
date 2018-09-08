@@ -17,9 +17,37 @@ public class Main {
          */
 
         /**
+         * Will retry to run your own anonymous function 3 times, each time one of ArithmeticException,
+         * FileAlreadyExistsException or IndexOutOfBoundsException are threw.
+         * If your function threw an exception that does not exists in the retryOn's list it will not retry to execute the function again.
+         */
+        RetryCatch retryCatchSync = new RetryCatch();
+        retryCatchSync
+                // For infinite retry times, just remove this row
+                .retryCount(3)
+                // For retrying on all exceptions, just remove this row
+                .retryOn(ArithmeticException.class, IndexOutOfBoundsException.class)
+                .onSuccess(() -> System.out.println("Success, There is no result because this is a runnable."))
+                .onRetry((retryCount, e) -> System.out.println("Retry count: " + retryCount + ", Exception message: " + e.getMessage()))
+                .onFailure(e -> System.out.println("Failure: Exception message: " + e.getMessage()))
+                .run(() -> {
+                    System.out.println("You can execute your own anonymous function 3 times...");
+
+                    Random rand = new Random();
+
+                    // Generate a number between 1 - 8
+                    int n = rand.nextInt(8) + 1;
+
+                    // if the generated number is 2, create an exception
+                    if (n == 2) {
+                        int anException = 1 / 0;
+                    }
+                });
+
+        /**
          * Will retry to run ExampleRunnable 3 times, each time one of ArithmeticException,
          * FileAlreadyExistsException or IndexOutOfBoundsException are threw.
-         * If the runnable threw an exception that does not exists in the retryOn list it will not retry the task.
+         * If the runnable threw an exception that does not exists in the retryOn's list it will not retry the task.
          * Because there is not return value from Runnable, the success callback does not have a returned parameter.
          * We also can change the retryOn exception to Exception.class in order to retry on every threw exception.
          */
