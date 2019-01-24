@@ -9,24 +9,24 @@ public interface ExecutorServiceProvider {
      * @param <T>      the type of the returned value
      * @see Callable#call()
      */
-    <T> void call(Callable<T> callable);
+    <T> void call(CheckedCallable<T> callable);
 
     /**
      * @param callable the function to execute
      * @param <T>      the type of returned value
      * @see java.util.concurrent.ExecutorService#submit(Callable)
      */
-    <T> void submit(Callable<T> callable);
+    <T> void submit(CheckedCallable<T> callable);
 
     /**
      * @param runnable the task to execute
      * @see Runnable#run()
      */
-    void run(Runnable runnable);
+    void run(CheckedRunnable runnable);
 
     /**
      * @param runnable the task to execute
      * @see java.util.concurrent.ExecutorService#execute(Runnable)
      */
-    void execute(Runnable runnable);
+    void execute(CheckedRunnable runnable);
 }

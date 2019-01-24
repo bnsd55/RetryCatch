@@ -1,5 +1,7 @@
 package com.github.bnsd55.retryCatch;
 
+import com.github.bnsd55.retryCatch.interfaces.CheckedCallable;
+import com.github.bnsd55.retryCatch.interfaces.CheckedRunnable;
 import com.github.bnsd55.retryCatch.interfaces.ExecutorServiceProvider;
 import com.github.bnsd55.retryCatch.interfaces.ScheduledExecutorServiceProvider;
 import com.github.bnsd55.retryCatch.utilities.Predicates;
@@ -107,7 +109,7 @@ public class RetryCatch implements ExecutorServiceProvider, ScheduledExecutorSer
      * @param <T>      the type of the returned value
      */
     @Override
-    public <T> void call(Callable<T> callable) {
+    public <T> void call(CheckedCallable<T> callable) {
         int retries = 0;
 
         while (true) {
@@ -139,7 +141,7 @@ public class RetryCatch implements ExecutorServiceProvider, ScheduledExecutorSer
      * @param runnable the task to execute
      */
     @Override
-    public void run(Runnable runnable) {
+    public void run(CheckedRunnable runnable) {
         int retries = 0;
 
         while (true) {
@@ -175,7 +177,7 @@ public class RetryCatch implements ExecutorServiceProvider, ScheduledExecutorSer
      * @param runnable the task to execute
      */
     @Override
-    public void execute(Runnable runnable) {
+    public void execute(CheckedRunnable runnable) {
         if (this.executorService != null) {
             if (!(this.executorService instanceof ScheduledExecutorService)) {
                 this.executorService.execute(() -> this.run(runnable));
@@ -196,7 +198,7 @@ public class RetryCatch implements ExecutorServiceProvider, ScheduledExecutorSer
      * @param <T>      the type of the returned value
      */
     @Override
-    public <T> void submit(Callable<T> callable) {
+    public <T> void submit(CheckedCallable<T> callable) {
         if (this.executorService != null) {
             if (!(this.executorService instanceof ScheduledExecutorService)) {
                 this.executorService.submit(() -> this.call(callable));
@@ -219,7 +221,7 @@ public class RetryCatch implements ExecutorServiceProvider, ScheduledExecutorSer
      * @param <T>      the type of the returned value
      */
     @Override
-    public <T> void schedule(Callable<T> callable, long delay, TimeUnit unit) {
+    public <T> void schedule(CheckedCallable<T> callable, long delay, TimeUnit unit) {
         if (this.executorService != null) {
             if (this.executorService instanceof ScheduledExecutorService) {
                 ((ScheduledExecutorService) this.executorService).schedule(() -> this.call(callable), delay, unit);
@@ -241,7 +243,7 @@ public class RetryCatch implements ExecutorServiceProvider, ScheduledExecutorSer
      * @param unit     the time unit of the delay parameter
      */
     @Override
-    public void schedule(Runnable runnable, long delay, TimeUnit unit) {
+    public void schedule(CheckedRunnable runnable, long delay, TimeUnit unit) {
         if (this.executorService != null) {
             if (this.executorService instanceof ScheduledExecutorService) {
                 ((ScheduledExecutorService) this.executorService).schedule(() -> this.run(runnable), delay, unit);
@@ -263,7 +265,7 @@ public class RetryCatch implements ExecutorServiceProvider, ScheduledExecutorSer
      * @param unit         the time unit of the initialDelay and period parameters
      */
     @Override
-    public void scheduleAtFixedRate(Runnable runnable, long initialDelay, long period, TimeUnit unit) {
+    public void scheduleAtFixedRate(CheckedRunnable runnable, long initialDelay, long period, TimeUnit unit) {
         if (this.executorService != null) {
             if (this.executorService instanceof ScheduledExecutorService) {
                 ((ScheduledExecutorService) this.executorService).scheduleAtFixedRate(() -> this.run(runnable), initialDelay, period, unit);
@@ -287,7 +289,7 @@ public class RetryCatch implements ExecutorServiceProvider, ScheduledExecutorSer
      * @param unit         the time unit of the initialDelay and period parameters
      */
     @Override
-    public void scheduleWithFixedDelay(Runnable runnable, long initialDelay, long delay, TimeUnit unit) {
+    public void scheduleWithFixedDelay(CheckedRunnable runnable, long initialDelay, long delay, TimeUnit unit) {
         if (this.executorService != null) {
             if (this.executorService instanceof ScheduledExecutorService) {
                 ((ScheduledExecutorService) this.executorService).scheduleAtFixedRate(() -> this.run(runnable), initialDelay, delay, unit);

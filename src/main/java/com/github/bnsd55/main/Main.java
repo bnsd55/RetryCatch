@@ -1,6 +1,7 @@
 package com.github.bnsd55.main;
 
 import com.github.bnsd55.retryCatch.RetryCatch;
+import com.github.bnsd55.retryCatch.interfaces.CheckedCallable;
 
 import java.nio.file.FileAlreadyExistsException;
 import java.util.Random;
@@ -77,7 +78,7 @@ public class Main {
                 .onSuccess((result) -> System.out.println("Success, Result: " + result))
                 .onRetry((retryCount, e) -> System.out.println("Retry count: " + retryCount + ", Exception message: " + e.getMessage()))
                 .onFailure(e -> System.out.println("Failure: Exception message: " + e.getMessage()))
-                .call(new Callable<Integer>() {
+                .call(new CheckedCallable<Integer>() {
                     public Integer call() {
                         Random random = new Random();
 
@@ -141,7 +142,7 @@ public class Main {
                 .onRetry((retryCount, e) -> System.out.println("Retry count: " + retryCount + ", Exception message: " + e.getMessage()))
                 .onFailure(e -> System.out.println("Failure: Exception message: " + e.getMessage()))
                 .withExecutor(singleThread) // or threadPoolExecutor object
-                .submit(new Callable<Integer>() {
+                .submit(new CheckedCallable<Integer>() {
                     public Integer call() {
                         Random random = new Random();
 

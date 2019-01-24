@@ -5,7 +5,7 @@
 [![Open Source Love svg2](https://badges.frapsoft.com/os/v2/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity)
 
-A retry catch mechanism that provides a synchronous and asynchronous running, using Java 8.
+A retry catch mechanism that provides a synchronous and asynchronous running, using Java.
 
 Basically, it trying to save your code, if it's broken.
 
@@ -16,9 +16,9 @@ Add the latest RetryCatch [Maven](https://search.maven.org/artifact/com.github.b
 # Usage example
 For more examples about synchronous and asynchronous retry-catch click [Here](/src/main/java/com/github/bnsd55/main/Main.java).
 
-Instead of runnable you can execute your own anonymous function as executed in the first example [Here](https://github.com/bnsd55/RetryCatch/blob/master/src/main/java/com/github/bnsd55/main/Main.java).
+Instead of CheckedRunnable you can execute your own anonymous function as executed in the first example [Here](https://github.com/bnsd55/RetryCatch/blob/master/src/main/java/com/github/bnsd55/main/Main.java).
 
-You should not return values from your anonymous function, if you want to return value, use Callable.
+You should not return values from your anonymous function, if you want to return value, use CheckedCallable.
 
 You can use anonymous functions both of synchronous and asynchronous executions.
 
@@ -54,7 +54,7 @@ RetryCatch retryCatchSyncRunnable = new RetryCatch();
                 .onSuccess((result) -> System.out.println("Success, Result: " + result))
                 .onRetry((retryCount, e) -> System.out.println("Retry count: " + retryCount + ", Exception message: " + e.getMessage()))
                 .onFailure(e -> System.out.println("Failure: Exception message: " + e.getMessage()))
-                .call(new Callable<Integer>() {
+                .call(new CheckedCallable<Integer>() {
                     public Integer call() {
                         Random random = new Random();
 
